@@ -28,7 +28,7 @@ import math # math module
 import sys # argv
 
 # "constants"
-R_E_KM = 6378.1363
+R_E_KM = 6378.137
 E_E = 0.081819221456
 
 # helper functions
@@ -67,7 +67,7 @@ else:
 o_lat_rad = o_lat_deg * math.pi/180.0
 o_lon_rad = o_lon_deg * math.pi/180.0
 
-r_sez_km = math.sqrt(s_km**2 + e_km**2 + z_km**2)
+#r_sez_km = math.sqrt(s_km**2 + e_km**2 + z_km**2)
 
 #Rotation Matrix Multiplication
 Ry_r_sez_1 = s_km*math.sin(o_lat_rad)+z_km*math.cos(o_lat_rad)

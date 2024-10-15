@@ -26,7 +26,7 @@ import math # math module
 import sys # argv
 
 # "constants"
-R_E_KM = 6378.1363
+R_E_KM = 6378.137
 E_E = 0.081819221456
 
 # helper functions
@@ -75,13 +75,14 @@ lon_rad = math.atan2(o_y_km,o_x_km)
 lon_deg = lon_rad*180.0/math.pi
 
 # initialize lat_rad, r_lon_km, r_z_km
-lat_rad = math.asin(z_vec_km/math.sqrt(o_x_km**2+o_y_km**2+o_z_km**2))
+lat_rad = math.asin(o_z_km/math.sqrt(o_x_km**2+o_y_km**2+o_z_km**2))
 r_lon_km = math.sqrt(o_x_km**2+o_y_km**2)
 prev_lat_rad = float('nan')
 
 # iteratively find latitude
 c_E = float('nan')
 count = 0
+
 while (math.isnan(prev_lat_rad) or abs(lat_rad-prev_lat_rad)>10e-7) and count<5:
   denom = calc_denom(E_E,lat_rad)
   c_E = R_E_KM/denom
@@ -104,15 +105,10 @@ Rz_inv_sez_3 = Ry_inv_sez_1*math.cos(lat_rad) + Ry_inv_sez_3*math.sin(lat_rad)
 s_km = Rz_inv_sez_1
 e_km = Rz_inv_sez_2
 z_km = Rz_inv_sez_3
-error_corr = 0.0006977849
 
 print(s_km)
 print(e_km)
 print(z_km)
-
-print(s_km+error_corr)
-print(e_km+error_corr)
-print(z_km+error_corr)
 
 #print('Longtitude [deg]: '+str(lon_deg))
 #print('Latitude [deg]: '+str(lat_rad*180.0/math.pi))

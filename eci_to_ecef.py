@@ -97,8 +97,8 @@ jd_frac = JDmid + Dfrac
 
 Tut1 = (jd_frac - 2451545.0) / 36525
 GMST_sec = 67310.54841+((876600*60*60)+8640184.812866)*Tut1 + (0.093104*(Tut1**2))-(6.2*(10**-6))*(Tut1**3)
-GMST_rad = math.fmod(GMST_sec,86400) * w 
-GMST_rad = round(math.fmod(GMST_rad, 2*math.pi),6)
+GMST_rad = math.fmod(GMST_sec,86400) * w + 2*math.pi
+GMST_rad = math.fmod(GMST_rad, 2*math.pi)
 
 #GMST_rad = 0.523603
 
@@ -109,6 +109,7 @@ ecef_z_km = eci_z_km
 #======================================
 print(GMST_rad)
 print(jd_frac)
+print('')
 print(ecef_x_km)
 print(ecef_y_km)
 print(ecef_z_km)

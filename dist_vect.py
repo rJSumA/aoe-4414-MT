@@ -1,6 +1,6 @@
 # error_vect.py
 #
-# Usage: python3 error_vect.py 595.4532282387947 -5712.938247174647 3846.747289639383
+# Usage: python3 dist_vect.py 595.4532282387947 -5712.938247174647 3846.747289639383
 #                              595.4507082220091 -5712.939116540728 3846.747642588853
 #  Finds error magnitude from two vectors 
 # Parameters:
@@ -34,21 +34,19 @@ if len(sys.argv)==7:
 else:
    print(\
     'Usage: '\
-    'python3 error_vect.py v1_x v1_y v1_z v2_x v2_y v2_z'\
+    'python3 dist_vect.py v1_x v1_y v1_z v2_x v2_y v2_z'\
    )
    exit()
 #================================
 
-v1_mag = vector_mag(v1_x,v1_y,v1_z)
-v2_mag = vector_mag(v2_x,v2_y,v2_z)
+v_x = v1_x-v2_x
+v_y = v1_y-v2_y
+v_z = v1_z-v2_z
 
-error_mag = vector_mag(abs(v1_x-v2_x),abs(v1_y-v2_y),abs(v1_z-v2_z))
+dist_mag = vector_mag(abs(v_x),abs(v_y),abs(v_z))
 
-#error_mag = abs(v1_mag-v2_mag)
-#print(v1_mag)
-#print(v2_mag)
-print(error_mag*1E5)
+print(dist_mag)
 print('')
-print(v1_x-v2_x)
-print(v1_y-v2_y)
-print(v1_z-v2_z)
+print(v_x)
+print(v_y)
+print(v_z)
